@@ -24,8 +24,8 @@ app.post("/api/sendemail", async (req, res) => {
       const subject = "Thank You Message";
       const message = 
         `
-          <h3> Hello </h3>
-          <p>Thank you</p>
+          <h3> Hi, Thank you for your message </h3>
+          <p>We are happy to hear from you and will get back to you as soon as possible.</p>
         `;
       await sendEmail(subject, message, send_to, sent_from, reply_to);
       res.status(200).json({ success: true, message: "Email Sent" });
