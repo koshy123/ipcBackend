@@ -1,11 +1,10 @@
-const dotenv = require("dotenv").config();
 const express = require("express");
+const app = express();
+
 const bodyParser = require("body-parser") 
 const cors = require("cors")
 
 const sendEmail = require("./utils/sendEmail")
-
-const app = express();
 
 app.use(express.json());
 app.use(bodyParser.json());
