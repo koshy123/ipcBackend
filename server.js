@@ -4,34 +4,36 @@ const app = express();
 const bodyParser = require("body-parser") 
 const cors = require("cors")
 
-const sendEmail = require("./utils/sendEmail")
+// const sendEmail = require("./utils/sendEmail")
 
+//Middleware
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('utils'));
 
 app.get("/", (req, res) => {
-  res.send("home page");
+  res.sendFile(__dirname + '/utils/contactForm.html');
 });
 
-app.post("/api/sendemail", async (req, res) => {
-    const { email } = req.body;
-    try {
-      const send_to = email;
-      const sent_from = process.env.EMAIL_USER;
-      const reply_to = email;
-      const subject = "Thank You Message";
-      const message = 
-        `
-          <h3> Hi, Thank you for your message </h3>
-          <p>We are happy to hear from you and will get back to you as soon as possible.</p>
-        `;
-      await sendEmail(subject, message, send_to, sent_from, reply_to);
-      res.status(200).json({ success: true, message: "Email Sent" });
-    } catch (error) {
-      res.status(500).json(error.message);
-    }
-} )
+// app.post("/api/sendemail", async (req, res) => {
+//     const { email } = req.body;
+//     try {
+//       const send_to = email;
+//       const sent_from = process.env.EMAIL_USER;
+//       const reply_to = email;
+//       const subject = "Thank You Message";
+//       const message = 
+//         `
+//           <h3> Hi, Thank you for your message </h3>
+//           <p>We are happy to hear from you and will get back to you as soon as possible.</p>
+//         `;
+//       await sendEmail(subject, message, send_to, sent_from, reply_to);
+//       res.status(200).json({ success: true, message: "Email Sent" });
+//     } catch (error) {
+//       res.status(500).json(error.message);
+//     }
+// } )
 
 
 
