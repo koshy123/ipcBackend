@@ -25,10 +25,10 @@ xhr.onload = function(){
     console.log(xhr.responseText);
     if (xhr.responseText == 'succsess'){
         alert('Success');
-        name.value = name = '';
-        email.value = email = '';
-        subject.value = subject = '';
-        message.value = message = '';
+        name.value = '';
+        email.value = '';
+        subject.value = '';
+        message.value = '';
     } else {
         alert('Error');
     }

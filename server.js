@@ -7,6 +7,8 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 
 // const sendEmail = require("./utils/sendEmail")
+require('dotenv').config();
+const password = process.env.PASSWORD;
 
 //Middleware
 app.use(express.json());
@@ -25,7 +27,7 @@ app.post("/", (req, res) => {
         service: 'gmail',
         auth: {
           user: 'koshy.jeffrey57@gmail.com',
-          pass: 'guavaguava'
+          pass: password
         }
       })
       const mailoptions = {
