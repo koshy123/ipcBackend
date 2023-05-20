@@ -21,15 +21,17 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-      console.log(req.body)
 
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           user: 'koshy.jeffrey57@gmail.com',
-          pass: password
+          pass: password,
+          
         }
+        
       })
+
       const mailoptions = {
         from: req.body.email,
         to: 'koshy.jeffrey57@gmail.com',
@@ -42,7 +44,7 @@ app.post("/", (req, res) => {
           console.log(error);
           res.send('error');
         } else {
-          console.log('Email sent' + info.response);
+          console.log('Email sent: ' + info.response);
           res.send('succsess')
         }
       })

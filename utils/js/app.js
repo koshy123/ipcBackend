@@ -17,6 +17,7 @@ contactForm.addEventListener('submit', (e)=> {
         message: message.value
 
     }
+    console.log(formData);
 
 let xhr = new XMLHttpRequest();
 xhr.open('POST', '/');
@@ -24,6 +25,7 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onload = function(){
     console.log(xhr.responseText);
     if (xhr.responseText == 'succsess'){
+
         alert('Success');
         name.value = '';
         email.value = '';
