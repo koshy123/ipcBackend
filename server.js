@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+const nodemailer = require("nodemailer");
+
 const bodyParser = require("body-parser") 
 const cors = require("cors")
 
@@ -15,6 +17,35 @@ app.use(express.static('utils'));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + '/utils/contactForm.html');
 });
+
+app.post("/", (req, res) => {
+      console.log(req.body)
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'koshy.jeffrey57@gmail.com',
+          pass: 'guavaguava'
+        }
+      })
+      const mailoptions = {
+        from: req.body.email,
+        to: 'koshy.jeffrey57@gmail.com',
+        subject: `Message from ${req.body.email}: ${req.body.subject}`,
+        text: req.body.message 
+      }
+
+      transporter.sendMail(mailoptions, (error, info) => {
+        if (error) {
+          console.log(error);
+          res.send('error');
+        } else {
+          console.log('Email sent' + info.response);
+          res.send('succsess')
+        }
+      })
+})
+
 
 // app.post("/api/sendemail", async (req, res) => {
 //     const { email } = req.body;
