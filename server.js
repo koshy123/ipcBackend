@@ -30,7 +30,7 @@ app.post("/api/sendemail", async (req, res) => {
       <h3>Hi, thank you for your message</h3>
       <p>We are happy to hear from you and will get back to you as soon as possible.</p>
     `;
-    await sendEmail(userSubject, userMessage, [email]);
+    await sendEmail(userSubject, userMessage, email);
 
     // Send email to the host with user information
     const hostSubject = "New Message from Contact Form";
@@ -40,7 +40,7 @@ app.post("/api/sendemail", async (req, res) => {
       <p>Email: ${email}</p>
       <p>Message: ${message}</p>
     `;
-    await sendEmail(hostSubject, hostMessage, [process.env.HOST_EMAIL]);
+    await sendEmail(hostSubject, hostMessage, process.env.HOST_EMAIL);
 
     res.status(200).json({ success: true, message: "Email Sent" });
   } catch (error) {
