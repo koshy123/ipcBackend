@@ -5,7 +5,6 @@ let subject = document.getElementById('subject');
 let message = document.getElementById('message');
 
 
-
 contactForm.addEventListener('submit', (e)=> {
     e.preventDefault();
 
