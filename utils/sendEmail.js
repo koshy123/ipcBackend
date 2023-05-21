@@ -15,7 +15,7 @@ const sendEmail = async (subject, message, send_to, sent_from, reply_to) => {
 
     const options = {
         from: sent_from,
-        to: send_to,
+        to: to.join(", "), // Join multiple email addresses with a comma
         replyTo: reply_to,
         subject: subject,
         html: message
