@@ -23,30 +23,28 @@ app.get("/", (req, res) => {
 
 app.post("/api/sendemail", async (req, res) => {
   const { email, name, message } = req.body;
-  try {
-    // Send email to the user
-    const userSubject = "Thank You Message";
-    const userMessage = `
-      <h3>Hi, thank you for your message</h3>
-      <p>We are happy to hear from you and will get back to you as soon as possible.</p>
-    `;
-    await sendEmail(userSubject, userMessage, email);
+    try {
+      const userSubject = "Thank You Message";
+      const userMessage = `
+        <h3>Hi, thank you for your message</h3>
+        <p>We are happy to hear from you and will get back to you as soon as possible.</p>
+      `;
+      await sendEmail(userSubject, userMessage, email);
 
-    // Send email to the host with user information
-    const hostSubject = "New Message from Contact Form";
-    const hostMessage = `
-      <h3>New message received from the contact form</h3>
-      <p>Name: ${name}</p>
-      <p>Email: ${email}</p>
-      <p>Message: ${message}</p>
-    `;
-    await sendEmail(hostSubject, hostMessage, process.env.HOST_EMAIL);
+      const hostSubject = "New Message from Contact Form";
+      const hostMessage = `
+        <h3>New message received from the contact form</h3>
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Message: ${message}</p>
+      `;
+      await sendEmail(hostSubject, hostMessage, process.env.EMAIL_USER);
 
-    res.status(200).json({ success: true, message: "Email Sent" });
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-});
+      res.status(200).json({ success: true, message: "Email Sent" });
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+} )
 
 
 
